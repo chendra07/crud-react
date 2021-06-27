@@ -4,10 +4,11 @@ import { Container } from "reactstrap";
 
 //component
 import NavbarComponent from "./components/NavbarComponent/navbar.component";
+import JumbotronComponent from "./components/Jumbotron/jumbotron.component";
 import HomePage from "./pages/HomePage/home.component";
 import EditPage from "./pages/EditPage/editPage.component";
 import DetailPage from "./pages/DetailPage/detailPage.component";
-import AddUserPage from "./pages/AddUserPage/addUserPage.component";
+import CreateUserPage from "./pages/CreateUserPage/createUserPage.component";
 import AboutPage from "./pages/AboutPage/AboutPage.component";
 
 export default class App extends Component {
@@ -15,23 +16,15 @@ export default class App extends Component {
     return (
       <div>
         <NavbarComponent />
+
         <BrowserRouter>
           <Container>
-            <Route exact path="/">
-              <HomePage />
-            </Route>
-            <Route exact path="/create">
-              <AddUserPage />
-            </Route>
-            <Route exact path="/edit/:id">
-              <EditPage />
-            </Route>
-            <Route exact path="/detail/:id">
-              <DetailPage />
-            </Route>
-            <Route exact path="/about">
-              <AboutPage />
-            </Route>
+            <JumbotronComponent />
+            <Route exact path="/" component={HomePage} />
+            <Route exact path="/create" component={CreateUserPage} />
+            <Route exact path="/edit/:id" component={EditPage} />
+            <Route exact path="/detail/:id" component={DetailPage} />
+            <Route exact path="/about" component={AboutPage} />
           </Container>
         </BrowserRouter>
       </div>

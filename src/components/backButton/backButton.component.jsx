@@ -7,7 +7,7 @@ export const BackButton = () => {
     <Row>
       <Col>
         <Link to={"/"}>
-          <Button color="white" className="mr-2">
+          <Button color="danger" className="mr-2">
             Back
           </Button>
         </Link>

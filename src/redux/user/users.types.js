@@ -1,3 +1,5 @@
 export const UsersActionTypes = {
   GET_USERSDATASET: "GET_USERSDATASET",
+  GET_USER_DETAIL: "GET_USER_DETAIL",
+  POST_NEW_USER: "POST_NEW_USER",
 };

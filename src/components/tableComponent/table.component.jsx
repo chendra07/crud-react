@@ -105,7 +105,13 @@ const TableComponent = (props) => {
           )}
         </ToolkitProvider>
       ) : (
-        <Spinner type="grow" color="primary" />
+        <div className="text-center">
+          {props.errorUsersDataset ? (
+            <h1>{props.errorUsersDataset}</h1>
+          ) : (
+            <Spinner color="dark" />
+          )}
+        </div>
       )}
     </div>
   );
