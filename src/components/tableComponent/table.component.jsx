@@ -1,9 +1,10 @@
 import React from "react";
-import { Container, Button } from "reactstrap";
+import { Button, Row, Col, Spinner } from "reactstrap";
 import { connect } from "react-redux";
 import BootstrapTable from "react-bootstrap-table-next";
 import ToolkitProvider, { Search } from "react-bootstrap-table2-toolkit";
 import paginationFactory from "react-bootstrap-table2-paginator";
+import { Link } from "react-router-dom";
 
 const { SearchBar } = Search;
 
@@ -44,14 +45,18 @@ const columns = [
     formatter: (rowContent, row) => {
       return (
         <div>
+          <Link to={"detail/" + row.id}>
+            <Button color="white" className="mr-2">
+              &#10067; detail
+            </Button>
+          </Link>
+          <Link to={"edit/" + row.id}>
+            <Button color="white" className="mr-2">
+              &#9998; edit
+            </Button>
+          </Link>
           <Button color="white" className="mr-2">
             &#10060; delete
-          </Button>
-          <Button color="white" className="mr-2">
-            &#10067; detail
-          </Button>
-          <Button color="white" className="mr-2">
-            &#9998; edit
           </Button>
         </div>
       );
@@ -68,36 +73,48 @@ const defaultSorted = [
 
 const TableComponent = (props) => {
   return (
-    <Container>
-      <ToolkitProvider
-        bootstrap4
-        keyField="id"
-        data={props.users}
-        columns={columns}
-        defaultSorted={defaultSorted}
-        search
-      >
-        {(props) => (
-          <div>
-            <div className="float-right">
-              <SearchBar {...props.searchProps} placeholder="Search..." />
-            </div>
+    <div>
+      {props.users ? (
+        <ToolkitProvider
+          bootstrap4
+          keyField="id"
+          data={props.users}
+          columns={columns}
+          defaultSorted={defaultSorted}
+          search
+        >
+          {(props) => (
+            <div>
+              <Row>
+                <Link to="/create">
+                  <Button color="primary" className="mr-2">
+                    Create User
+                  </Button>
+                </Link>
+                <div className="float-right">
+                  <SearchBar {...props.searchProps} placeholder="Search..." />
+                </div>
+              </Row>
 
-            <hr />
-            <BootstrapTable
-              {...props.baseProps}
-              pagination={paginationFactory()}
-            />
-          </div>
-        )}
-      </ToolkitProvider>
-    </Container>
+              <hr />
+              <BootstrapTable
+                {...props.baseProps}
+                pagination={paginationFactory()}
+              />
+            </div>
+          )}
+        </ToolkitProvider>
+      ) : (
+        <Spinner type="grow" color="primary" />
+      )}
+    </div>
   );
 };
 
 const mapStateToProps = (state) => {
   return {
-    users: state.user.usersData,
+    users: state.user.usersDataset,
+    errorUsersDataset: state.user.errorUsersDataset,
   };
 };
 
