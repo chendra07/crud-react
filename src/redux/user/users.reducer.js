@@ -32,6 +32,13 @@ const usersReducer = (state = INITIAL_STATE, action) => {
         errorResponDataUser: action.payload.errorMessage,
       };
 
+    case UsersActionTypes.PUT_USER_UPDATE:
+      return {
+        ...state,
+        getResponDataUser: action.payload.data,
+        errorResponDataUser: action.payload.errorMessage,
+      };
+
     default:
       return state;
   }

@@ -107,4 +107,15 @@ FormComponent = reduxForm({
   enableReinitialize: true,
 })(FormComponent);
 
-export default connect()(FormComponent);
+const mapStateToProps = (state) => {
+  return {
+    initialValues: {
+      nama: state.user.userDetail.nama,
+      ipa: state.user.userDetail.ipa,
+      ips: state.user.userDetail.ips,
+      mtk: state.user.userDetail.mtk,
+    },
+  };
+};
+
+export default connect(mapStateToProps)(FormComponent);

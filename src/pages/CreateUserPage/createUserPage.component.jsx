@@ -17,11 +17,7 @@ class CreateUserPage extends Component {
   render() {
     if (this.props.getResponDataUser || this.props.errorResponDataUser) {
       if (this.props.errorResponDataUser) {
-        swal(
-          "Failed add new u",
-          "Nama: " + this.props.getResponDataUser.nama,
-          "success"
-        );
+        swal("Failed! ", "Failed add new user", "error");
       } else {
         swal(
           "UserCreated!",

@@ -1,11 +1,7 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
 import TableComponent from "../../components/tableComponent/table.component";
-import {
-  deleteDataUser,
-  deleteUserDetail,
-  getUsersData,
-} from "../../redux/user/users.action";
+import { deleteDataUser, getUsersData } from "../../redux/user/users.action";
 
 class HomePage extends Component {
   componentDidMount() {

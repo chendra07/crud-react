@@ -9,7 +9,7 @@ export const getUsersData = () => {
       )
       .then(function (response) {
         // handle success
-        // console.log(response);
+        console.log(response);
         dispatch({
           type: UsersActionTypes.GET_USERSDATASET,
           payload: {
@@ -41,7 +41,7 @@ export const getUserDetail = (id) => {
       )
       .then(function (response) {
         // handle success
-        // console.log(response);
+        console.log(response);
         dispatch({
           type: UsersActionTypes.GET_USER_DETAIL,
           payload: {
@@ -77,7 +77,7 @@ export const deleteUserDetail = () => {
 };
 
 export const postUserCreate = (data) => {
-  console.log(data);
+  // console.log(data);
   return (dispatch) => {
     axios
       .post(
@@ -86,7 +86,7 @@ export const postUserCreate = (data) => {
       )
       .then(function (response) {
         // handle success
-        // console.log(response);
+        console.log(response);
         dispatch({
           type: UsersActionTypes.POST_NEW_USER,
           payload: {
@@ -126,5 +126,58 @@ export const deleteDataUser = () => {
         errorMessage: false,
       },
     });
+  };
+};
+
+export const putUserUpdate = (data, id) => {
+  // console.log(data);
+  return (dispatch) => {
+    axios
+      .put(
+        "https://my-json-server.typicode.com/chendra07/dataJson-dummy/usersDataset/" +
+          id,
+        data
+      )
+      .then(function (response) {
+        // handle success
+        console.log(response);
+        dispatch({
+          type: UsersActionTypes.PUT_USER_UPDATE,
+          payload: {
+            data: response.data,
+            errorMessage: false,
+          },
+        });
+      })
+      .catch(function (error) {
+        // handle error
+        console.log(error);
+        dispatch({
+          type: UsersActionTypes.POST_NEW_USER,
+          payload: {
+            data: false,
+            errorMessage: error.message,
+          },
+        });
+      });
+  };
+};
+
+export const deleteUser = (id) => {
+  // console.log(data);
+  return (dispatch) => {
+    axios
+      .put(
+        "https://my-json-server.typicode.com/chendra07/dataJson-dummy/usersDataset/" +
+          id
+      )
+      .then(function (response) {
+        // handle success
+        console.log(response);
+      })
+      .catch(function (error) {
+        // handle error
+        console.log(error);
+      });
   };
 };
