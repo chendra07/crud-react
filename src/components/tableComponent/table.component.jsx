@@ -21,7 +21,7 @@ const handleClick = (dispatch, id) => {
       dispatch(deleteUser(id));
       swal("Data user telah dihapus!", {
         icon: "success",
-      });
+      }).then(window.location.reload());
     } else {
       swal("Data gagal dihapus!", {
         icon: "error",

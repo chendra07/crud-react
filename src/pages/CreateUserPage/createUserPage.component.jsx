@@ -2,11 +2,11 @@ import React, { Component } from "react";
 import { connect } from "react-redux";
 import swal from "sweetalert";
 import { reset } from "redux-form";
+import { Redirect } from "react-router";
 
 import { postUserCreate } from "../../redux/user/users.action";
 import FormComponent from "../../components/Form/form.component";
 import { BackButton } from "../../components/backButton/backButton.component";
-import { deleteDataUser } from "../../redux/user/users.action";
 
 class CreateUserPage extends Component {
   handleSubmit(data) {

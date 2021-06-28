@@ -4,9 +4,7 @@ import { UsersActionTypes } from "./users.types";
 export const getUsersData = () => {
   return (dispatch) => {
     axios
-      .get(
-        "https://my-json-server.typicode.com/chendra07/dataJson-dummy/usersDataset"
-      )
+      .get("http://localhost:5000/usersDataset")
       .then(function (response) {
         // handle success
         console.log(response);
@@ -35,10 +33,7 @@ export const getUsersData = () => {
 export const getUserDetail = (id) => {
   return (dispatch) => {
     axios
-      .get(
-        "https://my-json-server.typicode.com/chendra07/dataJson-dummy/usersDataset/" +
-          id
-      )
+      .get("http://localhost:5000/usersDataset/" + id)
       .then(function (response) {
         // handle success
         console.log(response);
@@ -80,10 +75,7 @@ export const postUserCreate = (data) => {
   // console.log(data);
   return (dispatch) => {
     axios
-      .post(
-        "https://my-json-server.typicode.com/chendra07/dataJson-dummy/usersDataset/",
-        data
-      )
+      .post("http://localhost:5000/usersDataset/", data)
       .then(function (response) {
         // handle success
         console.log(response);
@@ -133,11 +125,7 @@ export const putUserUpdate = (data, id) => {
   // console.log(data);
   return (dispatch) => {
     axios
-      .put(
-        "https://my-json-server.typicode.com/chendra07/dataJson-dummy/usersDataset/" +
-          id,
-        data
-      )
+      .put("http://localhost:5000/usersDataset/" + id, data)
       .then(function (response) {
         // handle success
         console.log(response);
@@ -167,10 +155,7 @@ export const deleteUser = (id) => {
   // console.log(data);
   return (dispatch) => {
     axios
-      .put(
-        "https://my-json-server.typicode.com/chendra07/dataJson-dummy/usersDataset/" +
-          id
-      )
+      .delete("http://localhost:5000/usersDataset/" + id)
       .then(function (response) {
         // handle success
         console.log(response);
