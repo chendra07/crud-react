@@ -5,19 +5,19 @@ import { reset } from "redux-form";
 import { Redirect } from "react-router";
 
 import { postUserCreate } from "../../redux/user/users.action";
-import FormComponent from "../../components/Form/form.component";
+import FormScoreComponent from "../../components/Form-score/form-score.component";
 import { BackButton } from "../../components/backButton/backButton.component";
 
 class CreateUserPage extends Component {
   handleSubmit(data) {
-    this.props.dispatch(postUserCreate(data));
+    this.props.dispatch(postUserCreate(data, this.props.tokenAccount.token));
     this.props.dispatch(reset("formCreateUser"));
   }
 
   render() {
     if (this.props.getResponDataUser || this.props.errorResponDataUser) {
       if (this.props.errorResponDataUser) {
-        swal("Failed! ", "Failed add new user", "error");
+        swal("Failed! ", "Failed to add new user", "error");
       } else {
         swal(
           "UserCreated!",
@@ -30,7 +30,7 @@ class CreateUserPage extends Component {
       <div>
         <BackButton />
         <h1>AddUser</h1>
-        <FormComponent onSubmit={(data) => this.handleSubmit(data)} />
+        <FormScoreComponent onSubmit={(data) => this.handleSubmit(data)} />
       </div>
     );
   }
@@ -38,6 +38,7 @@ class CreateUserPage extends Component {
 
 const mapStateToProps = (state) => {
   return {
+    tokenAccount: state.account.tokenAccount,
     getResponDataUser: state.user.getResponDataUser,
     errorResponDataUser: state.user.errorResponDataUser,
   };

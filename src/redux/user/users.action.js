@@ -4,7 +4,7 @@ import { UsersActionTypes } from "./users.types";
 export const getUsersData = () => {
   return (dispatch) => {
     axios
-      .get("http://localhost:5000/usersDataset")
+      .get("http://localhost:5000/api/usersDataset")
       .then(function (response) {
         // handle success
         console.log(response);
@@ -33,7 +33,7 @@ export const getUsersData = () => {
 export const getUserDetail = (id) => {
   return (dispatch) => {
     axios
-      .get("http://localhost:5000/usersDataset/" + id)
+      .get("http://localhost:5000/api/usersDataset/" + id)
       .then(function (response) {
         // handle success
         console.log(response);
@@ -71,11 +71,16 @@ export const deleteUserDetail = () => {
   };
 };
 
-export const postUserCreate = (data) => {
-  // console.log(data);
+export const postUserCreate = (data, token) => {
+  const headers = {
+    Authorization: "bearer " + token,
+  };
+  // console.log(headers);
   return (dispatch) => {
     axios
-      .post("http://localhost:5000/usersDataset/", data)
+      .post("http://localhost:5000/api/usersDataset/", data, {
+        headers: headers,
+      })
       .then(function (response) {
         // handle success
         console.log(response);
@@ -121,11 +126,16 @@ export const deleteDataUser = () => {
   };
 };
 
-export const putUserUpdate = (data, id) => {
-  // console.log(data);
+export const putUserUpdate = (data, token, id) => {
+  const headers = {
+    Authorization: "bearer " + token,
+  };
+  // console.log(headers);
   return (dispatch) => {
     axios
-      .put("http://localhost:5000/usersDataset/" + id, data)
+      .put("http://localhost:5000/api/usersDataset/" + id, data, {
+        headers: headers,
+      })
       .then(function (response) {
         // handle success
         console.log(response);
@@ -141,7 +151,7 @@ export const putUserUpdate = (data, id) => {
         // handle error
         console.log(error);
         dispatch({
-          type: UsersActionTypes.POST_NEW_USER,
+          type: UsersActionTypes.PUT_USER_UPDATE,
           payload: {
             data: false,
             errorMessage: error.message,
@@ -151,11 +161,16 @@ export const putUserUpdate = (data, id) => {
   };
 };
 
-export const deleteUser = (id) => {
-  // console.log(data);
+export const deleteUser = (id, token) => {
+  const headers = {
+    Authorization: "bearer " + token,
+  };
+  console.log(headers);
   return (dispatch) => {
     axios
-      .delete("http://localhost:5000/usersDataset/" + id)
+      .delete("http://localhost:5000/api/usersDataset/" + id, {
+        headers: headers,
+      })
       .then(function (response) {
         // handle success
         console.log(response);

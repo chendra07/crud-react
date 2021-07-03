@@ -1,4 +1,6 @@
 import React, { useState } from "react";
+import { connect } from "react-redux";
+import { accountLogOut } from "../../redux/account/account.action";
 import {
   Collapse,
   Navbar,
@@ -27,13 +29,19 @@ const NavbarComponent = (props) => {
           <Collapse isOpen={isOpen} navbar>
             <Nav className="mr-auto" navbar>
               <NavItem>
-                <NavLink href="/components/">Home</NavLink>
+                <NavLink href="/">Home</NavLink>
               </NavItem>
-              <NavItem>
-                <NavLink href="https://github.com/reactstrap/reactstrap">
-                  About Us
-                </NavLink>
-              </NavItem>
+              {props.tokenAccount ? (
+                <NavItem>
+                  <NavLink href="/login" onClick={() => accountLogOut}>
+                    Logout
+                  </NavLink>
+                </NavItem>
+              ) : (
+                <NavItem>
+                  <NavLink href="/login">Login</NavLink>
+                </NavItem>
+              )}
             </Nav>
             <NavbarText>Admin</NavbarText>
           </Collapse>
@@ -43,4 +51,14 @@ const NavbarComponent = (props) => {
   );
 };
 
-export default NavbarComponent;
+const mapStateToProps = (state) => {
+  return {
+    tokenAccount: state.account.tokenAccount,
+  };
+};
+
+const mapDispatchToProps = (dispatch) => ({
+  accountLogOut: (_) => dispatch(accountLogOut(_)),
+});
+
+export default connect(mapStateToProps, mapDispatchToProps)(NavbarComponent);

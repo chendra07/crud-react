@@ -10,11 +10,15 @@ import "bootstrap/dist/css/bootstrap.min.css";
 
 //redux
 import { Provider } from "react-redux";
+// import { PersistGate } from "redux-persist/integration/react";
+// import { store, persistor } from "./redux/store";
 import store from "./redux/store";
 
 ReactDOM.render(
   <Provider store={store}>
+    {/* <PersistGate persistor={persistor}> */}
     <App />
+    {/* </PersistGate> */}
   </Provider>,
   document.getElementById("root")
 );

@@ -34,7 +34,7 @@ const renderField = ({
   </Row>
 );
 
-class FormComponent extends Component {
+class FormScoreComponent extends Component {
   render() {
     return (
       <div>
@@ -101,11 +101,11 @@ class FormComponent extends Component {
   }
 }
 
-FormComponent = reduxForm({
+FormScoreComponent = reduxForm({
   form: "formCreateUser",
   validate: UserValidation,
   enableReinitialize: true,
-})(FormComponent);
+})(FormScoreComponent);
 
 const mapStateToProps = (state) => {
   return {
@@ -118,4 +118,4 @@ const mapStateToProps = (state) => {
   };
 };
 
-export default connect(mapStateToProps)(FormComponent);
+export default connect(mapStateToProps)(FormScoreComponent);

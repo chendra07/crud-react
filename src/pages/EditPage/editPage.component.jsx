@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import { connect } from "react-redux";
 import swal from "sweetalert";
 import { BackButton } from "../../components/backButton/backButton.component";
-import FormComponent from "../../components/Form/form.component";
+import FormScoreComponent from "../../components/Form-score/form-score.component";
 import { getUserDetail, putUserUpdate } from "../../redux/user/users.action";
 
 class EditPage extends Component {
@@ -11,7 +11,15 @@ class EditPage extends Component {
   }
 
   handleSubmit(data) {
-    this.props.dispatch(putUserUpdate(data, this.props.match.params.id));
+    console.log(data);
+    console.log(this.props.tokenAccount.token);
+    this.props.dispatch(
+      putUserUpdate(
+        data,
+        this.props.tokenAccount.token,
+        this.props.match.params.id
+      )
+    );
   }
 
   render() {
@@ -30,7 +38,7 @@ class EditPage extends Component {
       <div>
         <BackButton />
         <h1>EditPage</h1>
-        <FormComponent onSubmit={(data) => this.handleSubmit(data)} />
+        <FormScoreComponent onSubmit={(data) => this.handleSubmit(data)} />
       </div>
     );
   }
@@ -38,6 +46,7 @@ class EditPage extends Component {
 
 const mapStateToProps = (state) => {
   return {
+    tokenAccount: state.account.tokenAccount,
     getResponDataUser: state.user.getResponDataUser,
     errorResponDataUser: state.user.errorResponDataUser,
   };

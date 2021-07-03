@@ -6,7 +6,7 @@ export default class AboutPage extends Component {
     return (
       <div>
         <BackButton />
-        <h1>AboutPage</h1>
+        <h1>About Us</h1>
       </div>
     );
   }
